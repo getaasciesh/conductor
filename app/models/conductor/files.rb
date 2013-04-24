@@ -25,28 +25,31 @@ module Conductor
 			                  file_with_type}.keep_if{|a| !a.blank?}.sort_by{|name,path| name}
 
 		end
+
 		def track_back_paths
 			track_back_paths= Array.new
 	    	root= Rails.root.to_s
-	    	track_back_paths << [root, '/']
-	    	
-	    	root_escaped_path = @path.slice!(/#{root}/,0)
+	    	track_back_paths << [root, Rails.application.class.parent_name]
+	    	root_escaped_path = @path
+	    	root_escaped_path.slice!(/#{root}/,0)
 	    	path_arrayfied= root_escaped_path.split('/')
 	    	p= root
-	    	path_arrayfied.each do |entry|
-    			track_back_paths << [p+'/'+entry, entry]
-    		p = p+'/'+entry
+	    	path_arrayfied.keep_if{|item| !item.blank?}.each do |entry|
+	    		p = p+'/'+entry
+    			track_back_paths << [p, entry]
+    		end
+    		track_back_paths
     	end
 
     	def read_file
-    		if !File.directory? (@path)
 
+    		if !File.directory? (@path)
+    			file= File.read (@path)
+    			file_htmlified= file.gsub(/(\n|\t|\r)/, "<br>").gsub(/>\s*</, "<span class='tab'></span>")
     		end
     	end
 
     	def update_file
-
-    	end
 
 		end
 	end

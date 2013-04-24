@@ -132,7 +132,8 @@ tr.statistic td {
 }
 .folderLi, .fileLi
 {
-  padding-left: 5px;
+  border-bottom: 1px solid #8DA4C5;
+  padding-left: 15px;
   list-style-type: none;
 }
 .files_link
@@ -143,3 +144,10 @@ tr.statistic td {
 {
   background-color:#656EAD;
 }
+#location_track
+{
+  font-size: 20px;
+ border-bottom: 1px solid #496C80;
+margin-bottom: 10px;
+text-decoration: none
+ }

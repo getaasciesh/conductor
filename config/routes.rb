@@ -1,4 +1,4 @@
 Conductor::Engine.routes.draw do
 	resources :annotations, :routes, :scaffolds, :files, :statistics
-	match '/files/:id/:show_path', to: 'files#show'
+	match '/files/show', to: 'files#show'
 end

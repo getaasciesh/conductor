@@ -1,12 +1,15 @@
-<div id="files_Container">
+<div id="location_track">
+	<%= render 'track_back' %>
+</div>
+<div id="files_menu">
 	<ul class="filesUl">
-		<% @folders.each do |file| %>
-			<%= link_to files_path(folder_path: file[1]), class: 'files_link' do %>
-  				<li class="folderLi"><%= file[0]%></li>
+		<% @folders.each do |folder| %>
+			<%= link_to files_path(folder_path: folder[1]), class: 'files_link' do %>
+  				<li class="folderLi"><%= folder[0]%></li>
 			<% end %>
 		<% end %>
 		<% @files.each do |file| %>
-			<%= link_to files_path(folder_path: file[1]), class: 'files_link' do %>
+			<%= link_to files_show_path({path: file[1]}), class: 'files_link' do %>
   				<li class="fileLi"><%= file[0]%></li>
 			<% end %>
 		<% end %>
