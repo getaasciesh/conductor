@@ -1,0 +1,15 @@
+<div id="files_Container">
+	<ul class="filesUl">
+		<% @folders.each do |file| %>
+			<%= link_to files_path(folder_path: file[1]), class: 'files_link' do %>
+  				<li class="folderLi"><%= file[0]%></li>
+			<% end %>
+		<% end %>
+		<% @files.each do |file| %>
+			<%= link_to files_path(folder_path: file[1]), class: 'files_link' do %>
+  				<li class="fileLi"><%= file[0]%></li>
+			<% end %>
+		<% end %>
+
+	</ul>
+<div>
