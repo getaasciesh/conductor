@@ -1,4 +1,36 @@
+<script type="text/javascript">
+			// get element shortcut
+			function $(e){ return document.getElementById(e); };
+			// generic syntax parser
+			var parser = new Parser({
+				whitespace: /\s+/,
+				comment: /\/\*([^\*]|\*[^\/])*(\*\/?)?|(\/\/|#)[^\r\n]*/,
+				string: /"(\\.|[^"\r\n])*"?|'(\\.|[^'\r\n])*'?/,
+				number: /0x[\dA-Fa-f]+|-?(\d+\.?\d*|\.\d+)/,
+				keyword: /(and|as|case|catch|class|const|def|delete|die|do|end|else|elseif|elsif|esac|exit|extends|false|fi|finally|for|foreach|function|global|if|new|null|or|private|protected|public|published|resource|return|self|static|struct|switch|then|this|throw|true|try|var|void|while|xor)(?!\w|=)/,
+				variable: /[\$\%\@](\->|\w)+(?!\w)|\${\w*}?/,
+				define: /[$A-Z_a-z0-9]+/,
+				op: /[\+\-\*\/=<>!]=?|[\(\)\{\}\[\]\.\|]/,
+				other: /\S+/,
+			});
+			// wait for the page to finish loading before accessing the DOM
+			window.onload = function(){
+				// get the textarea
+				var textarea = $('codeArea');
+				// start the decorator
+				decorator = new TextareaDecorator( textarea, parser );
+			};
+</script>
+
 <div id="location_track">
 	<%= render 'track_back' %>
 </div>
-<div><%=@file.html_safe%></div>
+
+<%= form_for(:file, url: 'update', method: 'put') do |f|%>
+
+<%=f.text_field :path, value: @path, hidden: true %>
+<div id="codeAreaWrapper">
+	<%= f.text_area :raw, value: @file.html_safe,id: 'codeArea', class: 'input' %>
+</div>
+	<%= f.submit 'Save', class: 'file_submit' %>
+<% end%>

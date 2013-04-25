@@ -1,4 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   margin: 0;
   margin-bottom: 25px;
   padding: 0;
@@ -151,3 +159,32 @@ tr.statistic td {
 margin-bottom: 10px;
 text-decoration: none
  }
+#codeArea
+{width: 500px;
+min-height: 500px;
+overflow: auto;
+}
+#codeAreaWrapper
+{border: 1px solid black;
+background-color: #F5F4F3;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: 0 4px 8px #eee inset;
+  -moz-box-shadow: 0 4px 8px #eee inset;
+  -webkit-box-shadow: 0 4px 8px #eee inset;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+}
+.file_submit{height:30px;width: 70px; margin: 4px; font-weight: bold; padding: 5px; float: right;}
+/* highlight styles */
+      .ldt .comment { color: silver; }
+      .ldt .string { color: green; }
+      .ldt .number { color: navy; }
+      /* setting inline-block and margin to avoid misalignment bug in windows */
+      .ldt .keyword { font-weight: bold; display: inline-block; margin-bottom: -1px; color:pink;}
+      .ldt .variable { color: cyan; }
+      .ldt .define { color: blue; }
+      /*setting height of ldt */
+      .ldt.input {min-height:500px; overflow: auto;}

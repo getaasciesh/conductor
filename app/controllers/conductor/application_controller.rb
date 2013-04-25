@@ -1,6 +1,6 @@
 module Conductor
   class ApplicationController < ActionController::Base
-  	before_filter :ensure_local_request
+  	# before_filter :ensure_local_request
     before_filter :set_page_title
 
     private

@@ -30,7 +30,7 @@ module Conductor
 			track_back_paths= Array.new
 	    	root= Rails.root.to_s
 	    	track_back_paths << [root, Rails.application.class.parent_name]
-	    	root_escaped_path = @path
+	    	root_escaped_path = @path.dup
 	    	root_escaped_path.slice!(/#{root}/,0)
 	    	path_arrayfied= root_escaped_path.split('/')
 	    	p= root
@@ -45,12 +45,15 @@ module Conductor
 
     		if !File.directory? (@path)
     			file= File.read (@path)
-    			file_htmlified= file.gsub(/(\n|\t|\r)/, "<br>").gsub(/>\s*</, "<span class='tab'></span>")
     		end
     	end
 
-    	def update_file
-
+    	def update_file(file)
+    		done=false
+    		done = true if File.open(@path, 'w') do |f2|  
+  								f2.puts file  
+							end
+    		done
 		end
 	end
 end
